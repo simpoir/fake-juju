@@ -4,15 +4,15 @@ package testing
 
 import (
 	"io/ioutil"
-	"path/filepath"
 	"os"
+	"path/filepath"
 	"runtime"
 
 	"github.com/juju/loggo"
 
 	gitjujutesting "github.com/juju/testing"
 
-	"github.com/juju/juju/cert"
+	certutils "github.com/juju/utils/cert"
 )
 
 var (
@@ -53,11 +53,11 @@ func SetCerts() error {
 	}
 
 	// Parse the bytes converting them into Go objects
-	caCertX509, _, err := cert.ParseCertAndKey(CACert, CAKey)
+	caCertX509, _, err := certutils.ParseCertAndKey(CACert, CAKey)
 	if err != nil {
 		return err
 	}
-	serverCert, serverKey, err := cert.ParseCertAndKey(ServerCert, ServerKey)
+	serverCert, serverKey, err := certutils.ParseCertAndKey(ServerCert, ServerKey)
 	if err != nil {
 		return err
 	}
